@@ -16,12 +16,15 @@ A simple, customizable workout timer app with sound notifications, theme switchi
 ## Technical Details
 
 - Built with React + TypeScript
-- Context API for global state management
+- Context API for global timer state separation (runtime vs settings)
 - Audio handled with native HTML5 Audio API
 - Clean component structure (Timer, Controls, Settings, Theme)
 - Easily extendable and maintainable codebase
 - Settings form validation and management powered by Zod and React Hook Form
-- Lighthouse scores: 95+ across all categories (Performance, Accessibility, Best Practices, SEO)
+
+## Performance & Accessibility
+
+- Lighthouse scores: 95+ across Performance, Accessibility, Best Practices, and SEO
 
 ## License
 
