@@ -28,7 +28,7 @@ A simple, customizable workout timer app with sound notifications, theme switchi
 
 ## License
 
-© 2025 BroN
+©2026 BroN
 
 This repository is intended for portfolio/demo purposes. Permission is granted to view and run the project for personal evaluation. Reuse, redistribution, or commercial use is not permitted without written permission.
 
