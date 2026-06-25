@@ -36,4 +36,4 @@ This repository is intended for portfolio/demo purposes. Permission is granted t
 
 ## Live Version
 
-https://vsbron-react2025-workout-timer.netlify.app/
+https://vsbron-workout-timer.netlify.app/
