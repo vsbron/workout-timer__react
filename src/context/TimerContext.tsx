@@ -68,9 +68,14 @@ export const TimerProvider = ({ children }: { children: ReactNode }) => {
   const [isPaused, setIsPaused] = useState<boolean>(INITIAL_PAUSED);
 
   // Getting references to the audio files
-  const pauseRef = useRef(new Audio(Pause));
-  const startRef = useRef(new Audio(Start));
-  const stopRef = useRef(new Audio(Stop));
+  const pauseRef = useRef<HTMLAudioElement | null>(null);
+  if (!pauseRef.current) pauseRef.current = new Audio(Pause);
+
+  const startRef = useRef<HTMLAudioElement | null>(null);
+  if (!startRef.current) startRef.current = new Audio(Start);
+
+  const stopRef = useRef<HTMLAudioElement | null>(null);
+  if (!stopRef.current) stopRef.current = new Audio(Stop);
 
   // Creating a ref for the interval
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -94,8 +99,8 @@ export const TimerProvider = ({ children }: { children: ReactNode }) => {
         // Change the phase, reinitialize current time
         setCurrentPhase("Exercise");
         setCurrentTime(exerciseLength);
-        startRef.current.currentTime = 0.1;
-        startRef.current.play();
+        startRef.current!.currentTime = 0.1;
+        startRef.current!.play();
       }
 
       // If we're on Exercise and not on last round
@@ -104,8 +109,8 @@ export const TimerProvider = ({ children }: { children: ReactNode }) => {
         setCurrentRound((r) => r + 1);
         setCurrentPhase("Break");
         setCurrentTime(breakLength);
-        pauseRef.current.currentTime = 0.1;
-        pauseRef.current.play();
+        pauseRef.current!.currentTime = 0.1;
+        pauseRef.current!.play();
       } else {
         // Otherwise stop the timer
         stopTimer();
@@ -132,8 +137,8 @@ export const TimerProvider = ({ children }: { children: ReactNode }) => {
       setCurrentTime(GET_READY_TIME);
     }
     setIsPaused(false);
-    startRef.current.currentTime = 0;
-    startRef.current.play();
+    startRef.current!.currentTime = 0;
+    startRef.current!.play();
   };
 
   // Stop timer function that gets it to zero, but keeps the current lengths
@@ -142,8 +147,8 @@ export const TimerProvider = ({ children }: { children: ReactNode }) => {
     setCurrentTime(STARTING_TIME);
     setCurrentRound(STARTING_ROUND);
     setCurrentPhase("Idle");
-    stopRef.current.currentTime = 0;
-    stopRef.current.play();
+    stopRef.current!.currentTime = 0;
+    stopRef.current!.play();
   };
 
   // Reset timer function that initiates all the times/rounds

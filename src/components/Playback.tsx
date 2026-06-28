@@ -13,13 +13,14 @@ function Playback() {
   const { setIsPaused, stopTimer, startTimer } = useTimerContext();
 
   // Getting references to the pause audio file
-  const pauseRef = useRef(new Audio(Pause));
+  const pauseRef = useRef<HTMLAudioElement | null>(null);
+  if (!pauseRef.current) pauseRef.current = new Audio(Pause);
 
   // Click handlers for pause button
   const pauseButtonHandler = () => {
     setIsPaused(true);
-    pauseRef.current.currentTime = 0.1;
-    pauseRef.current.play();
+    pauseRef.current!.currentTime = 0.1;
+    pauseRef.current!.play();
   };
 
   // Returned JSX
