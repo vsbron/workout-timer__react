@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from "react";
+import { useCallback, useEffect, useState, type ReactNode } from "react";
 
 import { useTimerContext } from "@/context/TimerContext";
 
@@ -12,10 +12,25 @@ function Modal({ children }: { children: ReactNode }) {
   const { setIsPaused } = useTimerContext();
 
   // Toggle function that pauses the timer and shows/hides modal
-  const toggleModal = () => {
+  const toggleModal = useCallback(() => {
     setIsPaused(true);
     setIsOpen((open) => !open);
-  };
+  }, [setIsPaused]);
+
+  // UseEffect that closes modal on Escape key
+  useEffect(() => {
+    // Guard clause
+    if (!isOpen) return;
+
+    // Create the event listener and add it to document
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") toggleModal();
+    };
+    document.addEventListener("keydown", handleKey);
+
+    // Cleanup function
+    return () => document.removeEventListener("keydown", handleKey);
+  }, [isOpen, toggleModal]);
 
   // Returned JSX
   return (
