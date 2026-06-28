@@ -7,7 +7,7 @@ function Footer() {
         <br />
         This project is available on{" "}
         <a
-          href="https://github.com/vsbron/workout-timer-2025-react"
+          href="https://github.com/vsbron/workout-timer__react"
           target="_blank"
           className="underline hover:text-stone-950 dark:hover:text-stone-50"
         >

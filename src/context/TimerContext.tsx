@@ -52,7 +52,7 @@ interface ITimerSettings {
 // Create Context with undefined
 const TimerRuntimeContext = createContext<ITimerRuntime | undefined>(undefined);
 const TimerSettingsContext = createContext<ITimerSettings | undefined>(
-  undefined
+  undefined,
 );
 
 // TimerProvider component that will wrap the timer & controls
@@ -73,7 +73,7 @@ export const TimerProvider = ({ children }: { children: ReactNode }) => {
   const stopRef = useRef(new Audio(Stop));
 
   // Creating a ref for the interval
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   // UseEffect that handles the countdown
   useEffect(() => {

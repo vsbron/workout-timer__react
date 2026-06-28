@@ -11,7 +11,7 @@ function Controls() {
   const { resetTimer } = useTimerContext();
 
   // Getting the modal toggling function from Modal Context
-  const { toggleModal } = useModal();
+  const { toggleModal, isOpen } = useModal();
 
   // Returned JSX
   return (
@@ -26,7 +26,10 @@ function Controls() {
           </Modal.Trigger>
           <Modal.Overlay />
           <Modal.Content>
-            <Settings settingsClose={toggleModal} />
+            <Settings
+              key={isOpen ? "open" : "closed"}
+              settingsClose={toggleModal}
+            />
           </Modal.Content>
         </div>
       </Container>
